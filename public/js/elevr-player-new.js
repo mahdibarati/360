@@ -34,6 +34,7 @@ var deviceMotionEvent = {};
 var deviceChangeEvent = {};
 var deviceMotionObserver = {};
 var deviceChangeObserver = {};
+
 function resizeContainer() {
   if (!window.container) {
     window.container = document.getElementById("video-container");
@@ -134,7 +135,6 @@ function runEleVRPlayer() {
       });
 
     try {
-      addDeviceObservable();
     } catch (e) {
       console.log(e);
     }
@@ -143,6 +143,8 @@ function runEleVRPlayer() {
   initFromSettings(window.location.hash || window.location.search);
 
   called.runEleVRPlayer = true;
+
+  controls.play();
 }
 
 function initFromSettings(newSettings) {
@@ -164,10 +166,10 @@ function initFromSettings(newSettings) {
   } else {
     controls.hide();
 
-    if (typeof settings.autoplay === "undefined") {
-      // `autoplay` by default if controls are hidden and no explicit `autoplay` param set.
-      settings.autoplay = true;
-    }
+    // if (typeof settings.autoplay === "undefined") {
+    // `autoplay` by default if controls are hidden and no explicit `autoplay` param set.
+    settings.autoplay = true;
+    // }
   }
 
   if (settings.sound) {
@@ -249,24 +251,3 @@ window.addEventListener("message", function (e) {
     return;
   }
 });
-
-function addDeviceObservable() {
-  let { Observable, fromEvent } = rxjs;
-  console.log("addDeviceObservable");
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent);
-  console.log({ isMobile });
-  if (window.DeviceMotionEvent && isMobile) {
-    device = { orientation: window.screen.orientation.angle };
-
-    deviceMotionEvent = fromEvent(window, "deviceorientation");
-    deviceChangeEvent = fromEvent(window, "orientationchange");
-
-    deviceMotionObserver = deviceMotionEvent.subscribe((motion) => {
-      this.helper360.updateOrientationScene(device.orientation, motion);
-    });
-
-    deviceChangeObserver = deviceChangeEvent.subscribe(() => {
-      device.orientation = window.screen.orientation.angle;
-    });
-  }
-}

@@ -119,22 +119,44 @@ var manualRotation = quat.create(),
 
     enableKeyControls: function () {
       function key(event, sign) {
-        console.log({ event });
-        console.log({ sign });
         var control =
           controls.manualControls[
             String.fromCharCode(event.keyCode).toLowerCase()
           ];
-        console.log({ control });
+
         if (!control) return;
         if ((sign === 1 && control.active) || (sign === -1 && !control.active))
           return;
         control.active = sign === 1;
         controls.manualRotateRate[control.index] += sign * control.sign;
       }
+      function rotateleft() {
+        controls.manualRotateRate[1] += 1 * 1;
+        setTimeout(() => {
+          stopX();
+        }, 200);
+      }
+      function rotatetop() {
+        controls.manualRotateRate[0] += 1 * 1;
+        setTimeout(() => {
+          stopY();
+        }, 200);
+      }
+      function stopX() {
+        controls.manualRotateRate[1] += 1 * -1;
+      }
+      function stopY() {
+        controls.manualRotateRate[0] += 1 * -1;
+      }
 
       function onkey(event) {
         switch (String.fromCharCode(event.charCode)) {
+          case "i":
+            rotatetop();
+            break;
+          case "k":
+            rotateleft();
+            break;
           case "f":
             controls.fullscreen();
             break;
@@ -155,6 +177,9 @@ var manualRotation = quat.create(),
             controls.fullscreenIgnoreHMD();
             break;
           case "l":
+            controls.toggleLooping();
+            break;
+          default:
             controls.toggleLooping();
             break;
         }
@@ -190,7 +215,6 @@ var manualRotation = quat.create(),
     },
 
     play: function () {
-      alert();
       if (video.ended) {
         video.currentTime = 0.1;
       }

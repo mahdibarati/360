@@ -1,15 +1,14 @@
-(function(global) {
-  'use strict';
+(function (global) {
+  "use strict";
 
   var webVR = {
-
-    initWebVR: function() {
+    initWebVR: function () {
       if (navigator.getVRDevices) {
         navigator.getVRDevices().then(webVR.vrDeviceCallback);
       }
     },
 
-    vrDeviceCallback: function(vrdevs) {
+    vrDeviceCallback: function (vrdevs) {
       for (var i = 0; i < vrdevs.length; ++i) {
         if (vrdevs[i] instanceof HMDVRDevice) {
           vrHMD = vrdevs[i];
@@ -17,14 +16,15 @@
         }
       }
 
-      if (!vrHMD)
-        return;
+      if (!vrHMD) return;
 
+      console.log("vrdevs", vrdevs);
       // Then, find that HMD's position sensor
       for (i = 0; i < vrdevs.length; ++i) {
-        if (vrdevs[i] instanceof PositionSensorVRDevice &&
-            vrdevs[i].hardwareUnitId == vrHMD.hardwareUnitId)
-        {
+        if (
+          vrdevs[i] instanceof PositionSensorVRDevice &&
+          vrdevs[i].hardwareUnitId == vrHMD.hardwareUnitId
+        ) {
           vrSensor = vrdevs[i];
           break;
         }
@@ -33,10 +33,8 @@
       if (!vrSensor) {
         alert("Found an HMD, but didn't find its orientation sensor?");
       }
-    }
-
+    },
   };
 
   global.webVR = webVR;
-
 })(window);

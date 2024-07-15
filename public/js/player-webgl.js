@@ -102,7 +102,6 @@ var vrHMD, vrSensor;
         this.params.fragmentShaderName
       );
       this.vertexShader = webGL.getShaderByName(this.params.vertexShaderName);
-      console.log("this.vertexShader", this.vertexShader);
       this.program = webGL.gl.createProgram();
       webGL.gl.attachShader(this.program, this.vertexShader);
       webGL.gl.attachShader(this.program, this.fragmentShader);
@@ -206,6 +205,7 @@ var vrHMD, vrSensor;
 
       var rotation = mat4.create();
       var totalRotation = quat.create();
+      // console.log("vrSensor", vrSensor);
 
       if (typeof vrSensor !== "undefined") {
         var state = vrSensor.getState();
@@ -259,7 +259,6 @@ var vrHMD, vrSensor;
     },
 
     drawScene: function (frameTime) {
-      console.log("sssssssssss");
       timing.frameTime = frameTime;
       if (timing.showTiming) {
         timing.start = performance.now();
