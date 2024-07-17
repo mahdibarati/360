@@ -5,6 +5,12 @@
     initWebVR: function () {
       if (navigator.getVRDevices) {
         navigator.getVRDevices().then(webVR.vrDeviceCallback);
+      } else {
+        // console.log(
+        //   "window.screen.orientation.angle",
+        //   window.screen.orientation.angle
+        // );
+        // vrSensor = { orientation: window.screen.orientation };
       }
     },
 

@@ -143,7 +143,7 @@ function runEleVRPlayer() {
   initFromSettings(window.location.hash || window.location.search);
 
   called.runEleVRPlayer = true;
-
+  addDeviceObservable();
   controls.play();
 }
 
@@ -251,3 +251,53 @@ window.addEventListener("message", function (e) {
     return;
   }
 });
+
+// window.addEventListener("orientationchange", (e) => {
+//   console.log("ddddddddddd", e);
+// });
+var or = {};
+
+window.addEventListener("deviceorientation", (e) => {
+  //  console.log("aaaaa", e);
+  //   camera.rotation.x = beta * Math.PI / 180;
+  // camera.rotation.y = gamma * Math.PI / 180;
+  // camera.rotation.z = alpha * Math.PI / 180;
+  let x = (e.beta * Math.PI) / 180;
+  let y = (e.gamma * Math.PI) / 180;
+  let z = (e.alpha * Math.PI) / 180;
+  let o = { orientation: { x: x, y: y, z: z } };
+  or = o;
+});
+// window.addEventListener("devicemotion", (e) => {
+//   console.log("mmmmmmmmmmm", e);
+// });
+
+function addDeviceObservable() {
+  try {
+    console.log("addDeviceObservable", window.DeviceMotionEvent, "-");
+    if (window.DeviceMotionEvent) {
+      let device = { orientation: window.screen.orientation };
+      console.log("device", device);
+      // this.deviceMotionEvent$ = Observable.fromEvent(
+      //   window,
+      //   "deviceorientation"
+      // );
+      // this.deviceChangeEvent$ = Observable.fromEvent(
+      //   window,
+      //   "orientationchange"
+      // );
+
+      // this.deviceMotionObserver = this.deviceMotionEvent$.subscribe(
+      //   (motion) => {
+      //     console.log("--------", device.orientation);
+      //   }
+      // );
+
+      // this.deviceChangeObserver = this.deviceChangeEvent$.subscribe(() => {
+      //   this.device.orientation = window.screen.orientation.angle;
+      // });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}

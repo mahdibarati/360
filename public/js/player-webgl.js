@@ -208,7 +208,8 @@ var vrHMD, vrSensor;
       // console.log("vrSensor", vrSensor);
 
       if (typeof vrSensor !== "undefined") {
-        var state = vrSensor.getState();
+        var state = or; // vrSensor.getState();
+        //  console.log("state.orientation", state?.orientation);
         if (
           state !== null &&
           state.orientation !== null &&
