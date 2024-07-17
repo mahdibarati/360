@@ -79,12 +79,12 @@ function setupControls() {
   window.videoSelect = document.getElementById("video-select");
   window.projectionSelect = document.getElementById("projection-select");
 
-  // document.getElementById("title-l").style.fontSize =
-  //   window.outerHeight / 20 + "px";
-  // document.getElementById("title-r").style.fontSize =
-  //   window.outerHeight / 20 + "px";
-  // window.messageL.style.fontSize = window.outerHeight / 30 + "px";
-  // window.messageR.style.fontSize = window.outerHeight / 30 + "px";
+  document.getElementById("title-l").style.fontSize =
+    window.outerHeight / 20 + "px";
+  document.getElementById("title-r").style.fontSize =
+    window.outerHeight / 20 + "px";
+  window.messageL.style.fontSize = window.outerHeight / 30 + "px";
+  window.messageR.style.fontSize = window.outerHeight / 30 + "px";
 
   controls.create();
   called.setupControls = true;
