@@ -12,7 +12,7 @@ function PhoneVR() {
   window.addEventListener(
     "deviceorientation",
     function (orientation) {
-      console.log("orientation", orientation);
+      // console.log("orientation", orientation);
       this.deviceAlpha = orientation.alpha;
       this.deviceGamma = orientation.gamma;
       this.deviceBeta = orientation.beta;

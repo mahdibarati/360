@@ -147,17 +147,17 @@
     /> -->
   </head>
   <body>
-    <button onclick="playVideo();" style="z-index: 20; position: absolute">
+    <!-- <button onclick="playVideo();" style="z-index: 20; position: absolute">
       play!!!!!!
-    </button>
+    </button> -->
     <div id="video-container">
       <div id="left-load" class="left">
-        <div id="title-l" class="title">Loading Video...</div>
-        <div id="message-l" class="message hidden">Try WASD + Q/E</div>
+        <div id="title-l" class="title"></div>
+        <div id="message-l" class="message hidden"></div>
       </div>
       <div id="right-load" class="right">
-        <div id="title-r" class="title">Loading Video...</div>
-        <div id="message-r" class="message hidden">Try WASD + Q/E</div>
+        <div id="title-r" class="title"></div>
+        <div id="message-r" class="message hidden"></div>
       </div>
       <div id="left-play" class="left hidden">
         <a id="play-l" class="large-play fa fa-play fa-5x"></a>
@@ -183,7 +183,7 @@
         /> -->
         <source src="http://46.245.73.240:9880/hi2.m3u8" type="video/mp4" />
       </video>
-      <div id="video-controls" class="hidden">
+      <div id="video-controls" class="hidden" style="display: none">
         <a id="play-pause" class="fa fa-play icon" title="Play"></a>
 
         <input type="range" id="seek-bar" value="0" />
@@ -220,33 +220,45 @@
       </div>
     </div>
 
-    <script>
-      function requestOrientationPermission() {
-        window.addEventListener("orientationchange", (e) => {
-          alert("ddddddddddd", e);
-        });
-        // var scene = new THREE.Scene();
-        // var camera = new THREE.PerspectiveCamera(
-        //   75,
-        //   window.innerWidth / window.innerHeight,
-        //   0.1,
-        //   1000
-        // );
-        // let controls = new THREE.DeviceOrientationControls(camera, true);
-        // DeviceOrientationEvent.requestPermission()
-        //   .then((response) => {
-        //     if (response == "granted") {
-        //       window.addEventListener("deviceorientation", (e) => {
-        //         // do something with e
-        //         console.log(
-        //           event.alpha + " : " + event.beta + " : " + event.gamma
-        //         );
-        //       });
-        //     }
-        //   })
-        //   .catch(console.error);
-      }
+    <div
+      style="
+        display: flex;
+        width: 'calc(100% - 40px)';
+        height: 100%;
+        gap: 10px;
+        padding: 20px;
+        z-index: 2000;
+      "
+    >
+      <div
+        style="
+          width: 100%;
+          margin: auto;
+          background-color: rgb(35, 79, 145);
+          border-radius: 15px;
+          text-align: center;
+          z-index: 3000;
+        "
+        onClick="playWithTwoEyes()"
+      >
+        <p style="font-weight: 700">"نمایش با عینک؟"</p>
+      </div>
+      <div
+        style="
+          width: 100%;
+          margin: auto;
+          background-color: #ff9c00;
+          border-radius: 15px;
+          text-align: center;
+          z-index: 3000;
+        "
+        onClick="playWithOneEyes()"
+      >
+        <p style="font-weight: 700">"نمایش بدون عینک؟"</p>
+      </div>
+    </div>
 
+    <script>
       function playVideo() {
         var video = document.getElementById("video");
         if (Hls.isSupported()) {
@@ -257,19 +269,18 @@
             runEleVRPlayer();
           });
         }
+      }
 
-        // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
-        // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
-        // This is using the built-in support of the plain video element, without using hls.js.
-        // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
-        // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
-        // else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        //   alert(2);
-        //   video.src = "http://46.245.73.240:9880/hi2.m3u8";
-        //   video.addEventListener("loadedmetadata", function () {
-        //     video.play();
-        //   });
-        // }
+      var Two_Eyes_Enable = true;
+
+      function playWithTwoEyes() {
+        Two_Eyes_Enable = true;
+        playVideo();
+      }
+
+      function playWithOneEyes() {
+        Two_Eyes_Enable = false;
+        playVideo();
       }
     </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>

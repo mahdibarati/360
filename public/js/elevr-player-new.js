@@ -274,10 +274,10 @@ window.addEventListener("deviceorientation", (e) => {
 
 function addDeviceObservable() {
   try {
-    console.log("addDeviceObservable", window.DeviceMotionEvent, "-");
+    // console.log("addDeviceObservable", window.DeviceMotionEvent, "-");
     if (window.DeviceMotionEvent) {
       let device = { orientation: window.screen.orientation };
-      console.log("device", device);
+      //  console.log("device", device);
       // this.deviceMotionEvent$ = Observable.fromEvent(
       //   window,
       //   "deviceorientation"

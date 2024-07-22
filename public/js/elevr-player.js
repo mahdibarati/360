@@ -252,7 +252,7 @@ window.addEventListener("message", function (e) {
 
 function addDeviceObservable() {
   let { Observable, fromEvent } = rxjs;
-  console.log("addDeviceObservable");
+  //console.log("addDeviceObservable");
   const isMobile = /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent);
   console.log({ isMobile });
   if (window.DeviceMotionEvent && isMobile) {

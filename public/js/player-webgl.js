@@ -248,10 +248,21 @@ var vrHMD, vrSensor;
 
       if (eye === 0) {
         // left eye
-        webGL.gl.viewport(0, 0, canvas.width / 2, canvas.height);
+        webGL.gl.viewport(
+          0,
+          0,
+          Two_Eyes_Enable ? canvas.width / 2 : canvas.width,
+          canvas.height
+        );
       } else {
         // right eye
-        webGL.gl.viewport(canvas.width / 2, 0, canvas.width / 2, canvas.height);
+        Two_Eyes_Enable &&
+          webGL.gl.viewport(
+            canvas.width / 2,
+            0,
+            canvas.width / 2,
+            canvas.height
+          );
       }
 
       // Draw
