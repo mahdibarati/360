@@ -220,7 +220,7 @@
       </div>
     </div>
 
-    <div
+    <!-- <div
       style="
         display: flex;
         width: 'calc(100% - 40px)';
@@ -256,7 +256,7 @@
       >
         <p style="font-weight: 700">"نمایش بدون عینک؟"</p>
       </div>
-    </div>
+    </div> -->
 
     <script>
       function playVideo() {
@@ -272,7 +272,6 @@
       }
 
       var Two_Eyes_Enable = true;
-
       function playWithTwoEyes() {
         Two_Eyes_Enable = true;
         playVideo();
@@ -281,6 +280,14 @@
       function playWithOneEyes() {
         Two_Eyes_Enable = false;
         playVideo();
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      let type = params.get("t");
+      if (type === "2") {
+        playWithTwoEyes();
+      } else {
+        playWithOneEyes();
       }
     </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>

@@ -240,15 +240,15 @@ window.addEventListener("hashchange", function () {
   initFromSettings(window.location.hash);
 });
 
-window.addEventListener("message", function (e) {
-  if (typeof e.data === "object") {
-    window.location.hash = "#" + JSON.stringify(e.data);
-  } else if (typeof e.data === "string") {
-    window.location.hash = "#" + e.data;
-  } else {
-    return;
-  }
-});
+// window.addEventListener("message", function (e) {
+//   if (typeof e.data === "object") {
+//     window.location.hash = "#" + JSON.stringify(e.data);
+//   } else if (typeof e.data === "string") {
+//     window.location.hash = "#" + e.data;
+//   } else {
+//     return;
+//   }
+// });
 
 function addDeviceObservable() {
   let { Observable, fromEvent } = rxjs;
