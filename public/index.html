@@ -181,7 +181,7 @@
           src="https://cdn.bitmovin.com/content/assets/playhouse-vr/progressive.mp4"
           type="video/mp4"
         /> -->
-        <source src="http://46.245.73.240:9880/hi2.m3u8" type="video/mp4" />
+        <source src="https://46.245.73.240:9880/hi2.m3u8" type="video/mp4" />
       </video>
       <div id="video-controls" class="hidden" style="display: none">
         <a id="play-pause" class="fa fa-play icon" title="Play"></a>
@@ -263,7 +263,7 @@
         var video = document.getElementById("video");
         if (Hls.isSupported()) {
           var hls = new Hls();
-          hls.loadSource("http://46.245.73.240:9880/hi2.m3u8");
+          hls.loadSource("https://46.245.73.240:9880/hi2.m3u8");
           hls.attachMedia(video);
           hls.on(Hls.Events.MANIFEST_PARSED, function () {
             runEleVRPlayer();
