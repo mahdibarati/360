@@ -263,7 +263,7 @@
         var video = document.getElementById("video");
         if (Hls.isSupported()) {
           var hls = new Hls();
-          hls.loadSource("https://46.245.73.240:9880/hi2.m3u8");
+          hls.loadSource("https://vr.pepapps.ir/");
           hls.attachMedia(video);
           hls.on(Hls.Events.MANIFEST_PARSED, function () {
             runEleVRPlayer();
